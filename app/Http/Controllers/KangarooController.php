@@ -41,15 +41,9 @@ class KangarooController extends Controller
      */
     public function store(StoreKangarooRequest $request)
     {
-        $kangaroo = Kangaroo::create($request->all());
+        $kangaroo = Kangaroo::create($request->validated());
 
-        $data = Kangaroo::all();
-    
-        return response()
-            ->json([
-                'message' => 'Success',
-                'data' => $data
-            ],200);
+        return response()->json(['message' => 'Success'], 200);
     }
 
     /**
@@ -73,7 +67,31 @@ class KangarooController extends Controller
      */
     public function update(UpdateKangarooRequest $request, Kangaroo $kangaroo)
     {
-        //
+        // dd($kangaroo);
+        // Retrieve the record
+        $record = Kangaroo::findOrFail($kangaroo->id);
+
+        // Validate the request data
+        // $validatedData = $request->validate([
+        //     'name' => 'required|string',
+        //     // Add validation rules for other fields
+        // ]);
+
+        // Update the record with the validated data
+        $record->update([
+            'name' => $request->editName,
+            'nickname' => $request->editNickname,
+            'weight' => $request->editWeight,
+            'height' => $request->editHeight,
+            'gender' => $request->editGender,
+            'color' => $request->editColor,
+            'friendliness' => $request->editFriendliness,
+            'birthday' => $request->editBirthday,
+
+        ]);
+
+        // Return the updated record or any other response
+        return response()->json(['message' => 'Record updated successfully', 'updatedRecord' => $record]);
     }
 
     /**

@@ -22,7 +22,14 @@ class StoreKangarooRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required',
+            // 'nickname' => 'required',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'gender' => 'required|numeric',
+            // 'color' => 'required|numeric',
+            // 'friendliness' => 'required|numeric',
+            'birthday' => 'required|date',
         ];
     }
 }

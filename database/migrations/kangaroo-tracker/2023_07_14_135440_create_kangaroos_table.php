@@ -18,8 +18,8 @@ return new class extends Migration
             $table->float('weight', 8, 2);
             $table->float('height', 8, 2);
             $table->tinyInteger('gender');
-            $table->string('color');
-            $table->tinyInteger('friendliness');
+            $table->string('color')->nullable()->default(null);
+            $table->tinyInteger('friendliness')->nullable()->default(null);
             $table->date('birthday');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable()->default(null);
