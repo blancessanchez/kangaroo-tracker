@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Factory as ValidationFactory;
 
-class StoreKangarooRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +23,8 @@ class StoreKangarooRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|unique:kangaroos|string|max:190',
-            'nickname' => 'nullable|string|max:190',
-            'weight' => 'required|numeric|min:0',
-            'height' => 'required|numeric|min:0',
-            'gender' => 'required|numeric',
-            'color' => 'nullable|string',
-            'friendliness' => 'nullable|numeric',
-            'birthday' => 'required|date|date_format:Y-m-d|before:today',
+            'username' => 'required',
+            'password' => 'required'
         ];
     }
 }

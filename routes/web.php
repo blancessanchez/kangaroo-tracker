@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthenticatedSessionController;
 use App\Http\Controllers\KangarooController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/kangaroos');
 });
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/login', [App\Http\Controllers\AuthenticatedSessionController::class, 'create']);
+Route::post('/login', [App\Http\Controllers\AuthenticatedSessionController::class, 'store'])->name('login');
+Route::post('/logout', [App\Http\Controllers\AuthenticatedSessionController::class, 'destroy'])->name('logout');
 
-// Route::get('/home', function () {
-//     $kangaroos = App\Models\Kangaroo::all();
-//     return view('home', compact('kangaroos'));
-// });
-
-Route::resource('kangaroos', KangarooController::class);
+Route::middleware('auth')->resource('kangaroos', KangarooController::class)->only([
+    'index', 'store', 'update'
+]);

@@ -13,14 +13,18 @@
             </div>
         </div>
     </div>
-
-    <x-kangaroo.modal-add></x-kangaroo.modal-add>
-    <x-kangaroo.modal-edit></x-kangaroo.modal-edit>
-    <x-loading></x-loading>
 @endsection
+
+@push('modals')
+    <x-kangaroo.modal-add />
+    <x-kangaroo.modal-edit />
+    <x-loading />
+@endpush
 
 @push('scripts')
     <script >
         var kangaroos = @json($kangaroos);
+        var genderEnum = @json($genderEnum);
+        var friendlinessEnum = @json($friendlinessEnum);
     </script>
 @endpush

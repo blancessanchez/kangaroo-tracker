@@ -1,4 +1,4 @@
-export function addKangaroo() {
+export function storeKangaroo() {
     $('#formAddKangaroo').submit(function(e) {
         $('.loading_modal').show();
         e.preventDefault();
@@ -15,12 +15,10 @@ export function addKangaroo() {
             type: 'POST',
             data: formData,
             success: function(response) {
-                console.log(response);
                 location.reload();
             },
             error: function(xhr) {
                 $('.loading_modal').hide();
-                console.log(xhr.responseText);
                 if (xhr.status === 422) {
                     var errors = xhr.responseJSON.errors;
                     for (var key in errors) {
@@ -31,9 +29,14 @@ export function addKangaroo() {
                         }
                     }
                 } else {
-                    console.log(error);
+                    console.log(xhr);
                 }
             }
         });
+    });
+
+    $('#modalAddKangaroo').on('hidden.bs.modal', function () {
+        $('.error').text('');
+        $('.form-control').removeClass('error-input');
     });
 }

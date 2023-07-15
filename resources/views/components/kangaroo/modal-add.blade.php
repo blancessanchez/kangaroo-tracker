@@ -8,12 +8,12 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form id="formAddKangaroo">
+        <form id="formAddKangaroo" novalidate>
             <div class="modal-body">
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name">
+                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" autocomplete="on">
                         <span id="nameError" class="error"></span>
                     </div>
                     <div class="form-group col-md-6">
@@ -25,12 +25,18 @@
                 <div class="row">
                     <div class="form-group col-md-6">
                         <label for="weight">Weight</label>
-                        <input type="number" class="form-control" name="weight" id="weight" placeholder="Enter weight">
+                        <div class="input-group">
+                            <input type="number" class="form-control"  name="weight" id="weight" placeholder="Enter weight">
+                            <span class="input-group-text">kg</span>
+                        </div>
                         <span id="weightError" class="error"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="height">Height</label>
-                        <input type="number" class="form-control" name="height" id="height" placeholder="Enter height">
+                        <div class="input-group">
+                            <input type="number" class="form-control"  name="height" id="height" placeholder="Enter height">
+                            <span class="input-group-text">cm</span>
+                        </div>
                         <span id="heightError" class="error"></span>
                     </div>
                 </div>
@@ -38,9 +44,10 @@
                     <div class="form-group col-md-6">
                         <label for="gender">Gender</label>
                         <select class="form-control" id="gender" name="gender">
-                            <option value="">Choose...</option>
-                            <option value="1">Male</option>
-                            <option value="2">Female</option>
+                            <option value="">-- Select gender --</option>
+                            @foreach (\App\Enums\Gender::cases() as $gender)
+                                <option value="{{ $gender->value }}">{{ $gender->text() }}</option>
+                            @endforeach
                         </select>
                         <span id="genderError" class="error"></span>
                     </div>
@@ -54,9 +61,10 @@
                     <div class="form-group col-md-6">
                         <label for="friendliness">Friendliness</label>
                         <select class="form-control" id="friendliness" name="friendliness">
-                            <option value="">Choose...</option>
-                            <option value="1">Friendly</option>
-                            <option value="2">Independent</option>
+                            <option value="">-- Select friendliness --</option>
+                            @foreach (\App\Enums\Friendliness::cases() as $friendliness)
+                                <option value="{{ $friendliness->value }}">{{ $friendliness->text() }}</option>
+                            @endforeach
                         </select>
                         <span id="friendlinessError" class="error"></span>
                     </div>

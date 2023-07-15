@@ -1,9 +1,13 @@
 import { tableKangaroo } from './kangaroos/index.js';
-import { addKangaroo } from './kangaroos/add.js';
-import { editKangaroo } from './kangaroos/edit.js';
+import { storeKangaroo } from './kangaroos/store.js';
+import { updateKangaroo } from './kangaroos/update.js';
 
 $(document).ready(function() {
     tableKangaroo();
-    addKangaroo();
-    editKangaroo();
+    storeKangaroo();
+    updateKangaroo();
+
+    $('.dropdown').click(function() {
+        $('.dropdown-menu').toggleClass('show');
+    });
 }); 
