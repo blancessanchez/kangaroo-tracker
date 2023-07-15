@@ -1,4 +1,6 @@
 $('#formEditKangaroo').submit(function(e) {
+    $('.error').text('');
+    $('.form-control').removeClass('error-input');
     $('.loading_modal').show();
     e.preventDefault();
 
