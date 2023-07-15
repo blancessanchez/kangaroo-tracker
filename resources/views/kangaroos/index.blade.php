@@ -22,9 +22,13 @@
 @endpush
 
 @push('scripts')
-    <script >
+    <script>
         var kangaroos = @json($kangaroos);
         var genderEnum = @json($genderEnum);
         var friendlinessEnum = @json($friendlinessEnum);
     </script>
+
+    <script src="{{ asset('js/kangaroos/index.js') }}"></script>
+    <script src="{{ asset('js/kangaroos/store.js') }}"></script>
+    <script src="{{ asset('js/kangaroos/update.js') }}"></script>
 @endpush

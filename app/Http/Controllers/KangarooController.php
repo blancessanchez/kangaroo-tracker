@@ -40,9 +40,7 @@ class KangarooController extends Controller
      */
     public function update(UpdateKangarooRequest $request, Kangaroo $kangaroo)
     {
-        $record = Kangaroo::findOrFail($kangaroo->id);
-
-        $record->update($request->only([
+        $kangaroo->fill($request->only([
             'name',
             'nickname',
             'weight',
@@ -51,7 +49,7 @@ class KangarooController extends Controller
             'color',
             'friendliness',
             'birthday',
-        ]));
+        ]))->save();
 
         return response()->json(['message' => 'Success'], 200);
     }
