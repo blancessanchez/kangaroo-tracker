@@ -46,7 +46,7 @@ This project is a very small front end for a fictitious company to store informa
 
 ```bash
   php artisan serve
-  npm run dev
+  npm run build
 ```
 
 - Login Credentials
