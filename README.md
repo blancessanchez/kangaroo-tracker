@@ -32,6 +32,8 @@ This project is a very small front end for a fictitious company to store informa
   php artisan migrate --path=database/migrations/kangaroo-tracker
   php artisan db:seed
   php artisan key:generate
+  composer install
+  npm install
 ```
 
 - Go to the .env file, change the following according to the credentials
